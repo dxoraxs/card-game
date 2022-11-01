@@ -24,7 +24,10 @@ public class ProgressBarController : MonoBehaviour
 
     public void SetNewValue(float newValue)
     {
-        if (progressAnimation != null) StopCoroutine(progressAnimation);
+        if (progressAnimation != null)
+        {
+            StopCoroutine(progressAnimation);
+        }
         progressAnimation = StartCoroutine(SetNewOffset(1 - newValue));
     }
 

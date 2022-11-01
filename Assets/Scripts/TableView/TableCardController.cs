@@ -46,7 +46,10 @@ public class TableCardController : CardViewController
 
     private void StartAnimation(bool value)
     {
-        if (lastValueDrag == value) return;
+        if (lastValueDrag == value)
+        {
+            return;
+        }
 
         lastValueDrag = value;
         outlineAnimation?.Kill();

@@ -22,7 +22,9 @@ public class TablePositionCalculator : CardPositionCalculator
         var positions = CalculatePositions(cards.Length);
 
         for (int index = 0; index < positions.Length; index++)
+        {
             cards[index].CardView.LocalMove(positions[index]);
+        }
     }
 
     private Vector3[] CalculatePositions(int count)

@@ -16,7 +16,10 @@ public class HandCardChangeValue : MonoBehaviour
     {
         var cardsInHand = cardController.GetCardsInHand();
 
-        if (cardsInHand.Length == 0) return;
+        if (cardsInHand.Length == 0)
+        {
+            return;
+        }
 
         var currentData = cardsInHand[counter % cardsInHand.Length];
         var newRandomValue = Random.Range(-2, 9);
@@ -35,6 +38,9 @@ public class HandCardChangeValue : MonoBehaviour
         }
 
         counter++;
-        if (cardsInHand.Length <= counter) counter = 0;
+        if (cardsInHand.Length <= counter)
+        {
+            counter = 0;
+        }
     }
 }

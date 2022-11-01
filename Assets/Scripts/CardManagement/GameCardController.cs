@@ -32,12 +32,18 @@ public class GameCardController : MonoBehaviour
     private void GetCardToHand()
     {
         var startCount = Random.Range(minCountOnStart, maxCountOnStart + 1);
-        for (int count = 0; count < startCount; count++) GetNewCardToHand();
+        for (int count = 0; count < startCount; count++)
+        {
+            GetNewCardToHand();
+        }
     }
 
     private void GetNewCardToHand()
     {
-        if (!dataManager.GetNewDataCard(out var data, out var index)) return;
+        if (!dataManager.GetNewDataCard(out var data, out var index))
+        {
+            return;
+        }
 
         indexesCardsInHand.Add(index);
         var card = poolController.GetFreeCard;

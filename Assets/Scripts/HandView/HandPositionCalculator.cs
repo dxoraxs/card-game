@@ -20,29 +20,6 @@ public class HandPositionCalculator : CardPositionCalculator
         }
     }
 
-    [Serializable] private class CardSettingPosition
-    {
-        public float Radius;
-        public float YOffsetPosition;
-        public int Count;
-
-        public CardSettingPosition(float radius, float yOffsetPosition, int count)
-        {
-            Radius = radius;
-            YOffsetPosition = yOffsetPosition;
-            Count = count;
-        }
-
-        public static CardSettingPosition CreateBetweenSettings(int countCard, CardSettingPosition minSetting,
-            CardSettingPosition maxSetting)
-        {
-            var setting = (float)(countCard - minSetting.Count) / (maxSetting.Count - minSetting.Count);
-            return new CardSettingPosition(Mathf.Lerp(minSetting.Radius, maxSetting.Radius, setting),
-                Mathf.Lerp(minSetting.YOffsetPosition, maxSetting.YOffsetPosition, setting),
-                countCard);
-        }
-    }
-
     #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
@@ -65,8 +42,11 @@ public class HandPositionCalculator : CardPositionCalculator
         for (int i = 0; i < cardPositions.Length; i++)
         {
             if (i < cardPositions.Length - 1)
+            {
                 Gizmos.DrawLine(centerCirclePosition + cardPositions[i] * setting.Radius,
                     centerCirclePosition + cardPositions[i + 1] * setting.Radius);
+            }
+            
             Gizmos.DrawLine(centerCirclePosition + cardPositions[i] * setting.Radius * 1.1f,
                 centerCirclePosition + cardPositions[i] * setting.Radius * 0.9f);
         }

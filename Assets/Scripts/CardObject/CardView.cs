@@ -114,43 +114,4 @@ public class CardView : MonoBehaviour
             uiComponent.SetNewColor(deathColor, TIME_DELAY_TO_FADE_CARD / 2f);
         }
     }
-
-    [Serializable]
-    private class UIComponents
-    {
-        [SerializeField] private Graphic component;
-        [SerializeField] private Color _default;
-
-        public UIComponents(Graphic component, Color @default)
-        {
-            this.component = component;
-            _default = @default;
-        }
-
-        public void ReturnToDefault() => component.color = _default;
-        public void SetNewColor(Color color, float duration) => component.DOColor(color, duration);
-    }
-
-    [Serializable]
-    private class CardText
-    {
-        [SerializeField] private TMP_Text text;
-        private Coroutine animationText;
-        private int lastValue;
-
-        public void SetText(MonoBehaviour card, int newValue, bool isAnimation = true)
-        {
-            if (isAnimation)
-            {
-                if (animationText != null) card.StopCoroutine(animationText);
-                animationText = card.StartCoroutine(text.TextCounter(newValue, lastValue));
-            }
-            else
-            {
-                text.text = newValue.ToString();
-            }
-
-            lastValue = newValue;
-        }
-    }
 }

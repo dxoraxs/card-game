@@ -10,7 +10,9 @@ public static class NetworkTextureDownloader
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(MediaUrl);
         yield return request.SendWebRequest();
         if (request.isNetworkError || request.isHttpError)
+        {
             Debug.Log(request.error);
+        }
         else
         {
             callback?.Invoke(((DownloadHandlerTexture)request.downloadHandler).texture);

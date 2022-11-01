@@ -10,7 +10,7 @@ public class CardsDragController : MonoBehaviour
     [SerializeField] private TableCardController tableCardController;
     private Action<Vector3> onDragCard;
     private Card dragCard;
-    private DragType currenttype;
+    private DragType currentType;
     private Vector3 startMousePosition;
     private Vector3 startCardPosition;
 
@@ -29,14 +29,20 @@ public class CardsDragController : MonoBehaviour
 
     private void Update()
     {
-        switch (currenttype)
+        switch (currentType)
         {
             case DragType.NONE:
-                if (Input.GetMouseButtonDown(0) && dragCard != null && handCardController.IsHaveThisCard(dragCard)) StartDragCard();
+                if (Input.GetMouseButtonDown(0) && dragCard != null && handCardController.IsHaveThisCard(dragCard))
+                {
+                    StartDragCard();
+                }
                 break;
             case DragType.DRAG:
                 MoveCard();
-                if (Input.GetMouseButtonUp(0)) StopDrag();
+                if (Input.GetMouseButtonUp(0))
+                {
+                    StopDrag();
+                }
                 break;
         }
     }
@@ -54,7 +60,7 @@ public class CardsDragController : MonoBehaviour
 
     private void StopDrag()
     {
-        currenttype = DragType.NONE;
+        currentType = DragType.NONE;
         dragCard.CardView.OnUnsetPreview();
         
         if (tableCardController.IsCardSetToTable)
@@ -73,7 +79,7 @@ public class CardsDragController : MonoBehaviour
     private void StartDragCard()
     {
         dragCard.CardView.StopMove();
-        currenttype = DragType.DRAG;
+        currentType = DragType.DRAG;
 
         startMousePosition = GetMousePosition();
 

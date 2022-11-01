@@ -44,7 +44,9 @@ public class ObjectsPoolController<T> where T : MonoBehaviour, IPoolObject
     public virtual T GetFreeObject()
     {
         if (!GetObjectFromList(out var currentObject))
+        {
             currentObject = SpawnNewObject();
+        }
 
         usedObject.Add(currentObject);
         return currentObject;
